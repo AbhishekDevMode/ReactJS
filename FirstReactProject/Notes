@@ -1,0 +1,198 @@
+Absolutely, Abhishek! Here's a cleaned-up and corrected version of your React notes, formatted for clarity and accuracy:
+
+---
+
+## ⚛️ React Basics
+
+### ✅ Components
+- Components are **independent and reusable** bits of code.
+- They serve a similar purpose as JavaScript functions but work in **isolation** and **return JSX (HTML-like syntax)**.
+- Components are created using **JavaScript functions** or **ES6 arrow functions**.
+- Component names **must start with a capital letter**.
+- You must **return a single parent element** (like `<div>`, `<section>`, etc.) from a component.
+- Inside that parent, you can nest **any number of child elements**.
+
+```jsx
+const MyComponent = () => {
+  return (
+    <div>
+      <h1>Hello, React!</h1>
+    </div>
+  );
+};
+```
+
+---
+
+### 🧬 What is JSX?
+- JSX stands for **JavaScript XML**.
+- It allows us to **write HTML-like syntax directly in JavaScript**.
+- JSX makes it easier to build and visualize UI components in React.
+- All tags in JSX must be **properly closed**.
+- Use `className` instead of `class` to avoid conflicts with JavaScript's `class` keyword.
+- Use `htmlFor` instead of `for` in form labels to avoid confusion with JavaScript's `for` loop.
+
+```jsx
+<label htmlFor="email">Email:</label>
+<input id="email" type="text" className="input-field" />
+```
+
+---
+
+### 📋 Lists in JavaScript
+- JavaScript lists are typically **arrays**.
+- You can loop through them using `.forEach()`, `.map()`, etc.
+
+```js
+const fruits = ['apple', 'banana', 'cherry'];
+fruits.forEach(fruit => {
+  console.log(fruit);
+});
+```
+
+---
+
+### 📦 Props
+- **Props (short for properties)** are arguments passed into React components.
+- They allow **data to flow from parent to child components**.
+
+```jsx
+const Greeting = (props) => {
+  return <h1>Hello, {props.name}!</h1>;
+};
+
+// Usage
+<Greeting name="Abhishek" />
+```
+
+---
+
+### 🔀 Conditional Rendering
+- Conditional rendering lets you **display different UI elements based on conditions**.
+
+```jsx
+const Message = ({ isLoggedIn }) => {
+  return (
+    <div>
+      {isLoggedIn ? <p>Welcome back!</p> : <p>Please log in.</p>}
+    </div>
+  );
+};
+```
+
+---
+
+### 🎨 React Icons
+- To use icons in React, install the package:
+
+```bash
+npm install react-icons --save
+```
+
+- Example usage:
+
+```jsx
+import { FaBeer } from 'react-icons/fa';
+
+const IconExample = () => {
+  return <h3>Cheers! <FaBeer /></h3>;
+};
+```
+
+---
+
+### 🔧 Hooks
+
+#### `useState()`
+- `useState` is a **React Hook** that lets you track **state** in functional components.
+- State refers to **data that changes over time**.
+
+```jsx
+import { useState } from "react";
+
+const App = () => {
+  const [count, setCount] = useState(0);
+
+  const increment = () => setCount(count + 1);
+
+  return (
+    <section>
+      <h1>{count}</h1>
+      <button onClick={increment}>+</button>
+    </section>
+  );
+};
+
+export default App;
+```
+
+---
+
+Let me know if you'd like me to turn this into a printable cheat sheet or add more hooks like `useEffect`, `useRef`, or `useContext`.
+//New Notes  
+import { useState } from "react";
+
+const App = () => {
+  const [friends, setFriends] = useState(["Alex", "John"]);
+
+  const addOneFriend = () => setFriends([...friends, "Huxn WebDev"]);
+
+  const removeOneFriend = () =>
+    setFriends(friends.filter((f) => f !== "John"));
+
+  const updateOneFriend = () =>
+    setFriends(friends.map((f) => (f === "Alex" ? "Alex Smith" : f)));
+
+  return (
+    <div>
+      <h2>Friends List</h2>
+      <ul>
+        {friends.map((friend, index) => (
+          <li key={index}>{friend}</li>
+        ))}
+      </ul>
+      <button onClick={addOneFriend}>Add Friend</button>
+      <button onClick={removeOneFriend}>Remove John</button>
+      <button onClick={updateOneFriend}>Update Alex</button>
+    </div>
+  );
+};
+export default App;
+//UseState && UseEffect
+import React from 'react'
+import { useState } from 'react';
+import { useEffect } from 'react';
+
+const ExampleThree = () => {
+    const [name,setName]=useState(()=>{
+        const savedName=localStorage.getItem("name");
+        return savedName ? JSON.parse(savedName):"";
+    });
+
+    useEffect(()=>{
+        localStorage.setItem("name",JSON.stringify(name))
+    },[name])
+    const handleClear= () =>setName("");
+    
+    const handleChange=(event)=>{
+        setName(event.target.value);
+    };
+
+
+  return (
+    <div>
+        <h1>Your Name:{name}</h1>
+        <input type="text" value={name} onChange={handleChange} placeholder="Enter Your Name" />
+        <button onClick={handleClear}>Clear Name</button>
+    </div>
+  )
+}
+
+export default ExampleThree;
+
+<!-- PORTAL -->
+portal is a feature that allows you to render a child component into a DOM node that exists outside the hierarchy of the parent component,=.This can be useful for scenarios like modal,tooltips,or dropdowns,where you want to break out of the usual parent-child structure and render in a different part of the DOM
+
+useEffecr()
+useEffect() Hook allows you to perform side effects in your components .Sme examples of side effects are:fetching data,directly updatin the DOM etc.
+useEffect(()=>{});
